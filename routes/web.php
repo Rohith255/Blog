@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function (){
-   Route::get('login',[AdminController::class,'login'])->name('admin.login');
-   Route::post('store',[AdminController::class,'store'])->name('admin.store');
+Route::prefix('admin')->group(function () {
+    Route::get('login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('store', [AdminController::class, 'store'])->name('admin.store');
 
-   Route::middleware('auth:admin')->group(function (){
-      Route::get('dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-   });
+    Route::middleware('admin')->group(function () {
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::post('logout',[AdminController::class,'logout'])->name('admin.logout');
+    });
+});

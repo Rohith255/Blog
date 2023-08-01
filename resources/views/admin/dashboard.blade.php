@@ -41,10 +41,12 @@
         </ul>
         <hr>
         <div class="dropdown">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none"  aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <form method="post" action="{{route('admin.logout')}}">
+                @csrf
+            <button type="submit" href="{{route('admin.logout')}}" class="d-flex align-items-center btn btn-primary"  aria-expanded="false">
                 Logout
-            </a>
+            </button>
+            </form>
         </div>
     </div>
         <div style="width: 80%;height: 100%;">

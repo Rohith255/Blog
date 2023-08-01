@@ -34,5 +34,5 @@
                 </script>
             @endif
         </div>
-    </div
+    </div>
 @endsection
