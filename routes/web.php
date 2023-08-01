@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin-login',function (){
-    return view('admin.admin_login');
-});
+Route::prefix('admin')->group(function (){
+   Route::get('login',[AdminController::class,'login'])->name('admin.login');
+   Route::post('store',[AdminController::class,'store'])->name('admin.store');
 
-Route::get('/user-login',function (){
-    return view('blog_user.login');
-});
-
-Route::get('/user-register',function (){
-    return view('blog_user.register');
-});
+   Route::middleware('auth:admin')->group(function (){
+      Route::get('dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+   });
