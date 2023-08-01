@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -24,4 +24,3 @@ Route::prefix('admin')->group(function (){
    Route::middleware('auth:admin')->group(function (){
       Route::get('dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
    });
-});
