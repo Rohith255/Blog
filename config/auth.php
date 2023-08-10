@@ -44,6 +44,10 @@ return [
             'driver'=>'session',
             'provider'=>'admins',
         ],
+        'user'=>[
+            'driver'=>'session',
+            'provider'=>'blog_users',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'admins'=>[
             'driver'=>'eloquent',
             'model'=>\App\Models\Admin::class,
+        ],
+        'blog_users'=>[
+            'driver'=>'eloquent',
+            'model'=>\App\Models\BlogUser::class,
         ],
 
         // 'users' => [
@@ -107,6 +115,12 @@ return [
         ],
         'admins' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'blog_users' => [
+            'provider' => 'blog_users',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
