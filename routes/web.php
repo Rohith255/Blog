@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +30,16 @@ Route::prefix('admin')->group(function () {
         Route::get('blog/users',[AdminController::class,'blogUsers'])->name('admin.blog-users');
         Route::get('view/blog/{id}',[AdminController::class,'viewBlog'])->name('admin.view-blog');
     });
+});
+
+Route::prefix('user')->group(function (){
+   Route::get('login',[BlogUserController::class,'login'])->name('blog-user.login');
+   Route::post('store',[BlogUserController::class,'store'])->name('blog-user.store');
+   Route::get('register',[BlogUserController::class,'register'])->name('blog-user.register');
+   Route::post('submit',[BlogUserController::class,'submit'])->name('blog-user.submit');
+
+   Route::middleware('user_auth')->group(function (){
+       Route::get('profile',[BlogUserController::class,'profile'])->name('blog-user.profile');
+       Route::post('logout',[BlogUserController::class,'logout'])->name('blog-user.logout');
+   });
 });
