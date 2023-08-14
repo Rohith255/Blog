@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogUserController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +44,6 @@ Route::prefix('user')->group(function (){
        Route::post('logout',[BlogUserController::class,'logout'])->name('blog-user.logout');
    });
 });
+
+Route::get('home',[BlogUserController::class,'home'])->name('home');
+Route::get('view/blog',[PostController::class,'view'])->name('post.view');
