@@ -11,6 +11,30 @@
                     You can even include more information about the topic, related links, and whatever else you find relevant.
                 </p>
             </div>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h2 class="mb-3">Comments</h2>
+
+                    @if(\Illuminate\Support\Facades\Auth::guard('user')->check())
+                        <!-- Comment Input Box and Button -->
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Write a comment..." aria-label="Write a comment..." aria-describedby="comment-button">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary h-100" style="margin-left: 4px" type="button" id="comment-button">Submit</button>
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Display Area for Comments -->
+                    <div class="comments">
+                        <!-- Example Comment -->
+                        <div class="alert alert-secondary" role="alert">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                        <!-- Add more comments here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

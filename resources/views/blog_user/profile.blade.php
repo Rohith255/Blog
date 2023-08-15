@@ -10,7 +10,7 @@
                              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                  alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                            <h5>Marie Horwitz</h5>
+                            <h5>{{$user->name}}</h5>
                             <p>Web Designer</p>
                             <i class="far fa-edit mb-5"></i>
                         </div>
@@ -21,11 +21,11 @@
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>Email</h6>
-                                        <p class="text-muted">info@example.com</p>
+                                        <p class="text-muted">{{$user->email}}</p>
                                     </div>
                                     <div class="col-6 mb-3">
                                         <h6>Phone</h6>
-                                        <p class="text-muted">123 456 789</p>
+                                        <p class="text-muted">{{\Carbon\Carbon::make($user->dob)->format('d/m/Y')}}</p>
                                     </div>
                                 </div>
                                 <h6>Blogs</h6>
@@ -41,9 +41,10 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start">
-                                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                    <form method="post" action="{{route('blog-user.logout')}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Logout</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

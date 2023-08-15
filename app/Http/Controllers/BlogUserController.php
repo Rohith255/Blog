@@ -60,7 +60,9 @@ class BlogUserController extends Controller
 
     public function profile()
     {
-        return view('blog_user.profile');
+        $user = Auth::guard('user')->user();
+
+        return view('blog_user.profile',['user'=>$user]);
     }
 
     public function logout()
