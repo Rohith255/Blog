@@ -33,7 +33,7 @@ class BlogUserController extends Controller
         if ($credentials){
 
             if (!empty($credentials['remember_me'])){
-                Cookie::queue('$blog_user_email',$blogUserLoginRequest->email,60*60*2);
+                Cookie::queue('blog_user_email',$blogUserLoginRequest->email,60*60*2);
                 Cookie::queue('blog_user_passcode',$blogUserLoginRequest->password,60*60*2);
             }
 
@@ -60,7 +60,9 @@ class BlogUserController extends Controller
 
     public function profile()
     {
-        return view('blog_user.profile');
+        $user = Auth::guard('user')->user();
+
+        return view('blog_user.profile',['user'=>$user]);
     }
 
     public function logout()
@@ -77,5 +79,10 @@ class BlogUserController extends Controller
         else{
             return redirect()->back();
         }
+    }
+
+    public function home()
+    {
+        return view('blog.home');
     }
 }
